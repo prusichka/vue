@@ -150,10 +150,6 @@ export default {
 </script>
 
 <style scoped>
-.banners-sliders {
-  height: 665px;
-  overflow-y: scroll;
-}
 h2 {
   font-size: 20px;
   font-weight: normal;
@@ -181,7 +177,7 @@ h3 {
 }
 .sliders-top {
   width: 99%;
-  margin: 20px 0 0 0;
+  margin: 20px 0 20px 0;
   display: flex;
   flex-direction: column;
 }
@@ -254,7 +250,7 @@ form input {
   margin: 0 10px;
 }
 .add-slider-lvl3 {
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
 }

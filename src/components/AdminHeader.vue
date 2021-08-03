@@ -3,11 +3,11 @@
     <div class="main-header">
       <header>
         <div class="header-left">
-          <img src="../assets/logo.png" alt="" class="header-png" />
+          <i class="fas fa-user" style="font-size: 54px"></i>
           <p>Мой кабинет</p>
         </div>
         <div class="header-right">
-          <img src="../assets/logo.png" alt="" class="header-png" />
+          <i class="fas fa-power-off" style="font-size: 34px"></i>
         </div>
       </header>
     </div>
@@ -23,7 +23,7 @@ export default {};
   margin-left: 205px;
   background-color: #fff;
   color: #1f2d3d;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 2px solid #dee2e6;
   z-index: 1034;
   -webkit-flex-flow: row nowrap;
   -ms-flex-flow: row nowrap;
@@ -50,5 +50,10 @@ header {
 }
 .header-left p {
   font-weight: bold;
+  margin: 0 10px;
+}
+.header-right{
+  display: flex;
+  align-items: center;
 }
 </style>

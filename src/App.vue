@@ -17,9 +17,6 @@ export default {
 </script>
 
 <style>
-body {
-  overflow: hidden;
-}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

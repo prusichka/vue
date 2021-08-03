@@ -15,8 +15,14 @@
                 Баннера/Слайдеры
               </button>
             </li>
-            <li class="nav-item"><button>Фильмы</button></li>
-            <li class="nav-item"><button>Кинотеатры</button></li>
+            <li class="nav-item">
+              <button @click="$router.push({ name: 'Film' })">Фильмы</button>
+            </li>
+            <li class="nav-item">
+              <button @click="$router.push({ name: 'Cinema' })">
+                Кинотеатры
+              </button>
+            </li>
             <li class="nav-item"><button>Новости</button></li>
             <li class="nav-item"><button>Акции</button></li>
             <li class="nav-item"><button>Страницы</button></li>
@@ -40,7 +46,7 @@ export default {};
 .main-sidebar {
   height: inherit;
   min-height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
   background-color: #343a40;

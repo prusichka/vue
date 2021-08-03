@@ -12,6 +12,26 @@ const routes = [
     name: "Banners/Sliders",
     component: () => import("../views/BannersSliders.vue"),
   },
+  {
+    path: "/films",
+    name: "Film",
+    component: () => import("../views/FilmPage.vue"),
+  },
+  {
+    path: "/film/card",
+    name: "Film Card",
+    component: () => import("../views/FilmCard.vue"),
+  },
+  {
+    path: "/cinema",
+    name: "Cinema",
+    component: () => import("../views/CinemaPage.vue"),
+  },
+  {
+    path: "/cinema/card",
+    name: "Cinema Card",
+    component: () => import("../views/CinemaCard.vue"),
+  },
 ];
 
 const router = createRouter({
