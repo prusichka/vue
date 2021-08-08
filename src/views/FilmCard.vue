@@ -147,21 +147,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    gallery: [],
-  }),
-  methods: {
-    addPhotoToGallery() {
-      if (this.gallery.length < 5) {
-        this.gallery.push("");
-      }
-    },
-  },
-};
-</script>
-
 <style scoped>
 h2 {
   font-size: 20px;

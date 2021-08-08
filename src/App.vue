@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style>
+@import "./assets/css/adminlte.css";
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

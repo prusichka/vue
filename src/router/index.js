@@ -32,6 +32,31 @@ const routes = [
     name: "Cinema Card",
     component: () => import("../views/CinemaCard.vue"),
   },
+  {
+    path: "/halls/card",
+    name: "Halls Card",
+    component: () => import("../views/HallsPage.vue"),
+  },
+  {
+    path: "/news",
+    name: "News",
+    component: () => import("../views/NewsPage.vue"),
+  },
+  {
+    path: "/news/card",
+    name: "News Card",
+    component: () => import("../views/NewsCard.vue"),
+  },
+  {
+    path: "/stock",
+    name: "Stock",
+    component: () => import("../views/StockPage.vue"),
+  },
+  {
+    path: "/stock/card",
+    name: "Stock Card",
+    component: () => import("../views/StockCard.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -23,8 +23,12 @@
                 Кинотеатры
               </button>
             </li>
-            <li class="nav-item"><button>Новости</button></li>
-            <li class="nav-item"><button>Акции</button></li>
+            <li class="nav-item">
+              <button @click="$router.push({ name: 'News' })">Новости</button>
+            </li>
+            <li class="nav-item">
+              <button @click="$router.push({ name: 'Stock' })">Акции</button>
+            </li>
             <li class="nav-item"><button>Страницы</button></li>
             <li class="nav-item"><button>Пользователи</button></li>
             <li class="nav-item"><button>Рассылка</button></li>
