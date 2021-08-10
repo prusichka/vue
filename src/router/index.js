@@ -57,6 +57,51 @@ const routes = [
     name: "Stock Card",
     component: () => import("../views/StockCard.vue"),
   },
+  {
+    path: "/pages",
+    name: "Pages",
+    component: () => import("../views/PagesPage.vue"),
+  },
+  {
+    path: "/pages/card",
+    name: "Pages Card",
+    component: () => import("../views/PagesCard.vue"),
+  },
+  {
+    path: "/pages/main/page",
+    name: "Main Page",
+    component: () => import("../views/PagesMainPage.vue"),
+  },
+  {
+    path: "/aboutCinema",
+    name: "About Cinema",
+    component: () => import("../views/AboutCinema.vue"),
+  },
+  {
+    path: "/cafebar",
+    name: "Cafe Bar",
+    component: () => import("../views/CafeBar.vue"),
+  },
+  {
+    path: "/vipHall",
+    name: "Vip Hall",
+    component: () => import("../views/VipHall.vue"),
+  },
+  {
+    path: "/advertising/card",
+    name: "Advert Card",
+    component: () => import("../views/AdvertCard.vue"),
+  },
+  {
+    path: "/childRoom",
+    name: "Child Room",
+    component: () => import("../views/ChildRoom.vue"),
+  },
+  {
+    path: "/contacts",
+    name: "Contacts",
+    component: () => import("../views/ContactsCard.vue"),
+  },
 ];
 
 const router = createRouter({

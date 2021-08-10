@@ -29,7 +29,9 @@
             <li class="nav-item">
               <button @click="$router.push({ name: 'Stock' })">Акции</button>
             </li>
-            <li class="nav-item"><button>Страницы</button></li>
+            <li class="nav-item">
+              <button @click="$router.push({ name: 'Pages' })">Страницы</button>
+            </li>
             <li class="nav-item"><button>Пользователи</button></li>
             <li class="nav-item"><button>Рассылка</button></li>
           </ul>
@@ -48,10 +50,10 @@ export default {};
 
 <style scoped>
 .main-sidebar {
-  height: inherit;
-  min-height: 100%;
-  position: fixed;
+  height: auto;
+  position: absolute;
   top: 0;
+  bottom: 0;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
   background-color: #343a40;
   overflow-y: hidden;

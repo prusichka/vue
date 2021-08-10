@@ -3,12 +3,6 @@
     <div class="news-wrap">
       <div class="top">
         <h1 class="title">Список Новостей</h1>
-        <button
-          class="create-news btn-success"
-          @click="$router.push({ name: 'News Card' })"
-        >
-          Создать Новость
-        </button>
       </div>
       <div class="table">
         <table>
@@ -46,12 +40,19 @@
             </td>
           </tr>
         </table>
+        <button
+          class="create-news btn-success"
+          @click="$router.push({ name: 'News Card' })"
+        >
+          Создать Новость
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+
 h2 {
   font-size: 20px;
   font-weight: normal;
