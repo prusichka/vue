@@ -102,6 +102,26 @@ const routes = [
     name: "Contacts",
     component: () => import("../views/ContactsCard.vue"),
   },
+  {
+    path: "/users",
+    name: "Users",
+    component: () => import("../views/UsersPage.vue"),
+  },
+  {
+    path: "/user/rename",
+    name: "Rename User",
+    component: () => import("../views/UserRename.vue"),
+  },
+  {
+    path: "/mailing",
+    name: "Mailing",
+    component: () => import("../views/MailingPage.vue"),
+  },
+  {
+    path: "/select/user",
+    name: "Select User",
+    component: () => import("../views/SelectUser.vue"),
+  },
 ];
 
 const router = createRouter({

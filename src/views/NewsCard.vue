@@ -173,10 +173,6 @@
 </template>
 
 <style scoped>
-.news-card {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .news-wrap {
   width: 99%;
   display: flex;
@@ -201,6 +197,5 @@
   padding: 10px;
   margin: 0 5px;
   border: 1px solid rgb(73, 32, 255);
-
 }
 </style>

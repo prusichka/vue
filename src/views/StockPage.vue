@@ -1,7 +1,7 @@
 <template>
   <div class="stock">
     <div class="stock-wrap">
-      <div class="card">
+      <div class="card content">
         <div class="card-header">
           <h3 class="card-title">Список Акций</h3>
         </div>
@@ -82,10 +82,6 @@
 </template>
 
 <style scoped>
-.stock {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .stock-wrap {
   width: 99%;
   display: flex;
@@ -95,6 +91,13 @@
 .card {
   width: 800px;
   margin: 20px 0;
+}
+.content{
+  width: 99%;
+}
+.card-title{
+  font-size: 26px;
+  font-weight: 700;
 }
 .edit-stock,
 .delete-stock {

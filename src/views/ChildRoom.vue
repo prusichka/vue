@@ -171,10 +171,7 @@
 </template>
 
 <style scoped>
-.child-room {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
+
 .child-room-wrap {
   width: 99%;
   display: flex;

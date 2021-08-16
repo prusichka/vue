@@ -171,10 +171,6 @@
 </template>
 
 <style scoped>
-.vip-hall {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .vip-hall-wrap {
   width: 99%;
   display: flex;

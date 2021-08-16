@@ -1,119 +1,246 @@
 <template>
   <div class="banners-sliders">
-    <div class="sliders-top">
-      <h1>На главной вверх</h1>
-      <div class="add-sliders">
-        <div class="add-sliders-lvl1">
-          <h2>Размер : 1000 x 190</h2>
-          <input type="checkbox" name="view" id="checkBox-view-sliders-top" />
+    <div class="wrapper">
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">На главной вверх</h3>
         </div>
-        <div class="add-slider-lvl2">
-          <button class="btn-lg" @click="addSliders">Добавить фото</button>
+        <div class="head">
+          <h3 class="card-title">Размер : 1000 x 190</h3>
           <div
-            class="add-slider-lvl2-content"
-            v-for="slide in sliders"
-            :key="slide"
+            class="
+              custom-control
+              custom-switch
+              custom-switch-off-danger
+              custom-switch-on-success
+            "
           >
-            <button class="btn-lg del" @click="deleteFirstSliders">
-              <i class="fas fa-times"></i>
-            </button>
-            <div class="new-slide">
-              <img src="../assets/logo.png" alt="" />
-              <button class="add-new-slide btn-lg">Добавить</button>
-              <form action="#" class="form-add-slide">
-                <div class="add-slide-url">
-                  <label for="url"><h3>URL :</h3></label>
-                  <input type="url" name="url" id="input-url" />
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customSwitch3"
+            />
+            <label class="custom-control-label" for="customSwitch3"></label>
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="new-img" v-for="image in images" :key="image">
+            <div class="card card-info">
+              <form class="form-horizontal">
+                <div class="card-body">
+                  <div class="form-group row download">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          id="exampleInputFile"
+                        />
+                        <label class="custom-file-label" for="exampleInputFile"
+                          >Choose file</label
+                        >
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputURL3" class="col-sm-2 col-form-label"
+                      >URL</label
+                    >
+                    <div class="col-sm-10">
+                      <input
+                        type="url"
+                        class="form-control"
+                        id="inputURL3"
+                        placeholder="URL"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputText3" class="col-sm-2 col-form-label"
+                      >Текст</label
+                    >
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputText3"
+                        placeholder="Текст"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div class="add-slide-text">
-                  <label for="text"><h3>Текст :</h3></label>
-                  <input type="text" name="text" id="input-text" />
-                </div>
+                <!-- /.card-body -->
+                <!-- /.card-footer -->
               </form>
-              {{ slide }}
             </div>
+            {{ image }}
           </div>
-        </div>
-        <div class="add-slider-lvl3">
-          <div class="add-slider-lvl3-content">
-            <h2>Скорость вращения</h2>
-            <select name="speed" id="">
-              <option value="1">2c</option>
-              <option value="2">3c</option>
-              <option value="3">4c</option>
-            </select>
-          </div>
-          <button class="btn-lg btn-save">Сохранить</button>
-        </div>
-      </div>
-    </div>
-    <div class="sliders-top">
-      <h1>Сквозной баннер на заднем фоне</h1>
-
-      <div class="add-banner">
-        <div class="title">
-          <h2>Размер : 2000 x 3000</h2>
-        </div>
-        <div class="add-banner-content">
-          <div class="radio">
-            <div class="radio-top">
-              <label for="photoRadio">Фото на фоне</label>
-              <input type="radio" name="photoRadio" id="1" checked />
-            </div>
-            <div class="radio-bottom">
-              <label for="photoRadio">Просто фон</label>
-              <input type="radio" name="photoRadio" id="1" />
-            </div>
-          </div>
-          <img src="../assets/logo.png" alt="" />
-          <button class="btn-lg">Добавить</button>
-          <button class="btn-lg">Удалить</button>
-        </div>
-      </div>
-    </div>
-    <div class="sliders-top">
-      <h1>На главной Новости Акции внизу</h1>
-      <div class="add-sliders">
-        <div class="add-sliders-lvl1">
-          <h2>Размер : 1000 x 190</h2>
-          <input type="checkbox" name="view" id="checkBox-view-sliders-top" />
-        </div>
-        <div class="add-slider-lvl2">
-          <button class="btn-lg" @click="addSecondSliders">
+          <button
+            type="button"
+            class="btn btn-block btn-outline-success add-img"
+            @click="addImage"
+          >
             Добавить фото
           </button>
-          <div
-            class="add-slider-lvl2-content"
-            v-for="slide in secondSliders"
-            :key="slide"
-          >
-            <button class="btn-lg del" @click="deleteSecondSliders">
-              <i class="fas fa-times"></i>
+        </div>
+        <div class="footer">
+          <div class="form-group speed">
+            <label>Скорость вращения</label>
+            <select class="custom-select second">
+              <option>1с</option>
+              <option>2с</option>
+              <option>3с</option>
+              <option>4с</option>
+              <option>5с</option>
+            </select>
+            <button type="button" class="btn bg-gradient-success">
+              Добавить
             </button>
-            <div class="new-slide">
-              <span class="close"></span>
-              <img src="../assets/logo.png" alt="" />
-              <button class="add-new-slide btn-lg">Добавить</button>
-              <form action="#" class="form-add-slide">
-                <div class="add-slide-url url-bottom">
-                  <label for="url"><h3>URL :</h3></label>
-                  <input type="url" name="url" id="input-url" />
-                </div>
-              </form>
-              {{ slide }}
+          </div>
+        </div>
+      </div>
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Сквозной банер на заднем фоне</h3>
+        </div>
+        <div class="head">
+          <h3 class="card-title">Размер : 2000 x 3000</h3>
+        </div>
+        <div class="main-content middle">
+          <div class="radio">
+            <div class="custom-control custom-radio">
+              <input
+                class="custom-control-input"
+                type="radio"
+                id="customRadio1"
+                name="customRadio"
+              />
+              <label for="customRadio1" class="custom-control-label"
+                >фото на фоне</label
+              >
+            </div>
+            <div class="custom-control custom-radio">
+              <input
+                class="custom-control-input"
+                type="radio"
+                id="customRadio2"
+                name="customRadio"
+              />
+              <label for="customRadio2" class="custom-control-label"
+                >просто фон</label
+              >
+            </div>
+          </div>
+          <div class="form-group download">
+            <div class="input-group">
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="custom-file-input"
+                  id="exampleInputFile"
+                />
+                <label class="custom-file-label" for="exampleInputFile"
+                  >Choose file</label
+                >
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text">Upload</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="add-slider-lvl3">
-          <div class="add-slider-lvl3-content">
-            <h2>Скорость вращения</h2>
-            <select name="speed" id="">
-              <option value="1">2c</option>
-              <option value="2">3c</option>
-              <option value="3">4c</option>
-            </select>
+        <!-- /.card-header -->
+        <!-- form start -->
+      </div>
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">На главной вверх</h3>
+        </div>
+        <div class="head">
+          <h3 class="card-title">Размер : 1000 x 190</h3>
+          <div
+            class="
+              custom-control
+              custom-switch
+              custom-switch-off-danger
+              custom-switch-on-success
+            "
+          >
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customSwitch3"
+            />
+            <label class="custom-control-label" for="customSwitch3"></label>
           </div>
-          <button class="btn-lg btn-save">Сохранить</button>
+        </div>
+        <div class="main-content">
+          <div class="new-img" v-for="image in images2" :key="image">
+            <div class="card card-info">
+              <form class="form-horizontal">
+                <div class="card-body">
+                  <div class="form-group row download">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          id="exampleInputFile"
+                        />
+                        <label class="custom-file-label" for="exampleInputFile"
+                          >Choose file</label
+                        >
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputURL3" class="col-sm-2 col-form-label"
+                      >URL</label
+                    >
+                    <div class="col-sm-10">
+                      <input
+                        type="url"
+                        class="form-control"
+                        id="inputURL3"
+                        placeholder="URL"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <!-- /.card-footer -->
+              </form>
+            </div>
+            {{ image }}
+          </div>
+          <button
+            type="button"
+            class="btn btn-block btn-outline-success add-img"
+            @click="addImage2"
+          >
+            Добавить фото
+          </button>
+        </div>
+        <div class="footer">
+          <div class="form-group speed">
+            <label>Скорость вращения</label>
+            <select class="custom-select second">
+              <option>1с</option>
+              <option>2с</option>
+              <option>3с</option>
+              <option>4с</option>
+              <option>5с</option>
+            </select>
+            <button type="button" class="btn bg-gradient-success">
+              Добавить
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -123,195 +250,69 @@
 <script>
 export default {
   data: () => ({
-    sliders: [],
-    secondSliders: [],
+    images: [],
+    images2: [],
   }),
   methods: {
-    addSliders() {
-      if (this.sliders.length < 5) {
-        this.sliders.push("");
-      }
+    addImage() {
+      this.images.push("");
     },
-    addSecondSliders() {
-      if (this.secondSliders.length < 5) {
-        this.secondSliders.push("");
-      }
-    },
-    deleteFirstSliders() {
-      this.sliders.shift();
-      console.log(this.sliders);
-    },
-    deleteSecondSliders() {
-      this.secondSliders.shift();
-      console.log(this.secondSliders);
+    addImage2() {
+      this.images2.push("");
     },
   },
 };
 </script>
 
 <style scoped>
-h2 {
-  font-size: 20px;
-  font-weight: normal;
-}
-h1 {
-  font-size: 22px;
-  font-weight: 500;
-}
-h3 {
-  font-size: 12px;
-  font-weight: normal;
-}
-.banners-sliders {
-  margin-left: 205px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.sliders-top h1 {
-  background-color: #007bff;
-  display: flex;
-  justify-content: center;
+.wrapper {
   padding: 5px;
-  margin: 0;
 }
-.sliders-top {
-  width: 99%;
-  margin: 20px 0 20px 0;
-  display: flex;
-  flex-direction: column;
-}
-.add-sliders {
-  border: 1px solid #000;
-}
-.add-sliders-lvl1 {
+.head {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px 15px;
 }
-.add-slider-lvl2 {
-  display: flex;
-  padding: 10px;
-  height: 250px;
-  align-items: center;
-}
-.btn-lg {
-  display: block;
-  width: 120px;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-  font-weight: 400;
-  text-align: center;
-  color: #6c757d;
-  border-color: #007bff;
-}
-.new-slide {
-  width: 200px;
-  height: 250px;
-  border: 1px solid #17a2b8;
-  border-radius: 5px;
-  margin: 0 15px;
-  display: flex;
-  flex-direction: column;
-}
-.new-slide img {
-  width: 100px;
-  height: 100px;
+.add-img {
+  width: max-content;
   margin: 10px auto;
 }
-.add-new-slide {
-  margin: 0 auto;
-  font-size: 16px;
-  padding: 5px;
-}
-.form-add-slide {
-  margin: 0 auto;
+.main-content {
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: space-between;
-}
-.add-slide-url {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin: 5px 2px;
-}
-.add-slide-text {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin: 5px 2px;
-}
-form input {
-  max-width: 140px;
-  margin: 0 10px;
-}
-.add-slider-lvl3 {
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-}
-.add-slider-lvl3-content {
-  display: flex;
-  width: max-content;
   align-items: center;
 }
-.add-slider-lvl3-content h2 {
-  padding: 10px 50px;
-}
-.btn-save {
-  margin: 0 10px;
-}
-.banners-middle {
-  width: 99%;
-  margin: 20px 0 0 0;
+.speed {
   display: flex;
-  flex-direction: column;
-}
-.add-banner {
-  border: 1px solid #000;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.add-banner h2 {
+  align-items: center;
   padding: 10px;
 }
-.add-banner-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.second {
+  margin: 0 20px;
 }
-.title {
-  display: flex;
-  justify-content: flex-start;
+.new-img {
+  width: 350px;
+  padding: 10px;
+}
+.form-group,
+.row,
+label {
+  padding: 0;
 }
 .radio {
-  padding: 10px;
-  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.radio-top,
-.radio-bottom {
-  margin: 10px 0;
+.radio div {
+  margin: 5px 20px;
+}
+.download {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin: 0 auto;
 }
-.add-banner-content img {
-  width: 100px;
-  height: 100px;
-}
-.url-bottom {
-  padding: 20px 0;
-  justify-content: center;
-}
-.del {
-  border: none;
-  padding: 0;
-  margin: 0;
-  background-color: #fff;
+.middle {
+  display: flex;
+  align-items: center;
 }
 </style>

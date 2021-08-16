@@ -164,10 +164,6 @@
 </template>
 
 <style scoped>
-.main-page {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .main-page-wrap {
   width: 99%;
   display: flex;

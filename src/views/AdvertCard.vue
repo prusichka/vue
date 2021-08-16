@@ -171,10 +171,6 @@
 </template>
 
 <style scoped>
-.advert {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .advert-card-wrap {
   width: 99%;
   display: flex;

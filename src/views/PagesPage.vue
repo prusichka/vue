@@ -1,7 +1,7 @@
 <template>
   <div class="pages">
     <div class="pages-wrap">
-      <div class="card">
+      <div class="card content">
         <div class="card-header">
           <h3 class="card-title">Список страниц</h3>
         </div>
@@ -130,10 +130,6 @@
 </template>
 
 <style scoped>
-.pages {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .pages-wrap {
   width: 100%;
   display: flex;
@@ -143,6 +139,9 @@
 .card {
   width: 900px;
   margin: 20px 0;
+}
+.content {
+  width: 99%;
 }
 .edit-stock,
 .delete-stock {

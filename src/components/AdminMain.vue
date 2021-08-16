@@ -1,44 +1,157 @@
 <template>
   <div class="admin-main">
-    <div class="main-sidebar">
-      <div class="sideBar">
-        <img src="../assets/logo.png" alt="" class="logo-img" />
-        <nav class="navigation">
-          <ul>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'Statistic' })">
-                Статистика
+    <aside class="main-sidebar sidebar-dark-primary elevation-4 blyat">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <img
+          src="../assets/logo.png"
+          alt="AdminLTE Logo"
+          class="brand-image img-circle elevation-3"
+          style="opacity: 0.8"
+        />
+        <span class="brand-text font-weight-light">MyCinema</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img
+              src="../assets/user.jpg"
+              class="img-circle elevation-2"
+              alt="User Image"
+            />
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">Alexander Pierce</a>
+          </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+          <div class="input-group" data-widget="sidebar-search">
+            <input
+              class="form-control form-control-sidebar"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
               </button>
+            </div>
+          </div>
+          <div class="sidebar-search-results">
+            <div class="list-group">
+              <a href="#" class="list-group-item"
+                ><div class="search-title">
+                  <strong class="text-light"></strong>N<strong
+                    class="text-light"
+                  ></strong
+                  >o<strong class="text-light"></strong>
+                  <strong class="text-light"></strong>e<strong
+                    class="text-light"
+                  ></strong
+                  >l<strong class="text-light"></strong>e<strong
+                    class="text-light"
+                  ></strong
+                  >m<strong class="text-light"></strong>e<strong
+                    class="text-light"
+                  ></strong
+                  >n<strong class="text-light"></strong>t<strong
+                    class="text-light"
+                  ></strong>
+                  <strong class="text-light"></strong>f<strong
+                    class="text-light"
+                  ></strong
+                  >o<strong class="text-light"></strong>u<strong
+                    class="text-light"
+                  ></strong
+                  >n<strong class="text-light"></strong>d<strong
+                    class="text-light"
+                  ></strong
+                  >!<strong class="text-light"></strong>
+                </div>
+                <div class="search-path"></div
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul
+            class="nav nav-pills nav-sidebar flex-column"
+            data-widget="treeview"
+            role="menu"
+            data-accordion="false"
+          >
+            <li class="nav-item" @click="$router.push({ name: 'Statistic' })">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p>Статистика</p>
+              </a>
             </li>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'Banners/Sliders' })">
-                Баннера/Слайдеры
-              </button>
+            <li
+              class="nav-item"
+              @click="$router.push({ name: 'Banners/Sliders' })"
+            >
+              <a class="nav-link">
+                <i class="nav-icon fas fa-photo-video"></i>
+                <p>Баннера/Слайдеры</p>
+              </a>
             </li>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'Film' })">Фильмы</button>
+            <li class="nav-item" @click="$router.push({ name: 'Film' })">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-film"></i>
+                <p>Фильмы</p>
+              </a>
             </li>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'Cinema' })">
-                Кинотеатры
-              </button>
+            <li class="nav-item" @click="$router.push({ name: 'Cinema' })">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-building"></i>
+                <p>Кинотеатры</p>
+              </a>
             </li>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'News' })">Новости</button>
+            <li class="nav-item" @click="$router.push({ name: 'News' })">
+              <a class="nav-link">
+                <i class="nav-icon far fa-newspaper"></i>
+                <p>Новости</p>
+              </a>
             </li>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'Stock' })">Акции</button>
+            <li class="nav-item" @click="$router.push({ name: 'Stock' })">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-percent"></i>
+                <p>Акции</p>
+              </a>
             </li>
-            <li class="nav-item">
-              <button @click="$router.push({ name: 'Pages' })">Страницы</button>
+            <li class="nav-item" @click="$router.push({ name: 'Pages' })">
+              <a class="nav-link">
+                <i class="nav-icon far fa-file"></i>
+                <p>Страницы</p>
+              </a>
             </li>
-            <li class="nav-item"><button>Пользователи</button></li>
-            <li class="nav-item"><button>Рассылка</button></li>
+            <li class="nav-item" @click="$router.push({ name: 'Users' })">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Пользователи</p>
+              </a>
+            </li>
+            <li class="nav-item" @click="$router.push({ name: 'Mailing' })">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-envelope-open-text"></i>
+                <p>Рассылка</p>
+              </a>
+            </li>
           </ul>
         </nav>
+        <!-- /.sidebar-menu -->
       </div>
-    </div>
-    <div class="main-content">
+      <!-- /.sidebar -->
+    </aside>
+    <div class="content-wrapper">
       <router-view />
     </div>
   </div>
@@ -48,66 +161,4 @@
 export default {};
 </script>
 
-<style scoped>
-.main-sidebar {
-  height: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
-  background-color: #343a40;
-  overflow-y: hidden;
-  z-index: 1038;
-  width: 200px;
-}
-.sideBar {
-  overflow-y: auto;
-  height: calc(100% - (3.5rem + 1px));
-  overflow-x: none;
-  overflow-y: initial;
-  padding-bottom: 0;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0;
-}
-.navigation {
-  margin-top: 0.5rem !important;
-  position: relative;
-  flex-direction: column !important;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-}
-.nav-item {
-  display: list-item;
-  text-align: -webkit-match-parent;
-  margin-bottom: 0;
-}
-.nav-item button {
-  display: inline;
-  margin: 0;
-  white-space: normal;
-  color: #c2c7d0;
-  background-color: #343a40;
-  width: 100%;
-  border-color: #343a40;
-  text-align: left;
-  padding: 10px 0;
-  border-radius: 10px;
-}
-.nav-item button:hover {
-  border-color: #ccc;
-  padding-left: 20px;
-}
-.logo-img {
-  width: 100px;
-  height: 100px;
-  margin: 30px 40px;
-}
-</style>
+<style scoped></style>

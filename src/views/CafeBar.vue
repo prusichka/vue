@@ -171,10 +171,6 @@
 </template>
 
 <style scoped>
-.cafe-bar {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .cafe-bar-wrap {
   width: 99%;
   display: flex;

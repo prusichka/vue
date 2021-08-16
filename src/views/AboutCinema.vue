@@ -171,10 +171,6 @@
 </template>
 
 <style scoped>
-.about-cinema {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .about-cinema-wrap {
   width: 99%;
   display: flex;

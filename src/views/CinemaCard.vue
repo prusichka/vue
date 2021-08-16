@@ -210,10 +210,6 @@ h3 {
   font-size: 12px;
   font-weight: normal;
 }
-.cinema-card {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
 .cinema-wrap {
   width: 99%;
   display: flex;

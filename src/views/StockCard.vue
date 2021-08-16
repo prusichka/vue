@@ -173,10 +173,7 @@
 </template>
 
 <style scoped>
-.stock-card {
-  margin-left: 205px;
-  overflow-x: hidden;
-}
+
 .stock-wrap {
   width: 99%;
   display: flex;
