@@ -24,24 +24,26 @@
           </div>
         </div>
         <div class="main-content">
-          <div class="new-img" v-for="image in images" :key="image">
+          <div class="new-img">
             <div class="card card-info">
               <form class="form-horizontal">
                 <div class="card-body">
                   <div class="form-group row download">
+                    <div class="img-div">
+                      <img :src="picture" class="small-img" />
+                    </div>
                     <div class="input-group">
                       <div class="custom-file">
                         <input
                           type="file"
                           class="custom-file-input"
                           id="exampleInputFile"
+                          accept="image/*"
+                          @change="previewimage"
                         />
                         <label class="custom-file-label" for="exampleInputFile"
                           >Choose file</label
                         >
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
                       </div>
                     </div>
                   </div>
@@ -53,8 +55,8 @@
                       <input
                         type="url"
                         class="form-control"
-                        id="inputURL3"
                         placeholder="URL"
+                        v-model="imageURL"
                       />
                     </div>
                   </div>
@@ -66,8 +68,8 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputText3"
                         placeholder="Текст"
+                        v-model="imageText"
                       />
                     </div>
                   </div>
@@ -76,7 +78,6 @@
                 <!-- /.card-footer -->
               </form>
             </div>
-            {{ image }}
           </div>
           <button
             type="button"
@@ -96,7 +97,11 @@
               <option>4с</option>
               <option>5с</option>
             </select>
-            <button type="button" class="btn bg-gradient-success">
+            <button
+              type="button"
+              class="btn bg-gradient-success"
+              @click="onUpload"
+            >
               Добавить
             </button>
           </div>
@@ -209,6 +214,7 @@
                         class="form-control"
                         id="inputURL3"
                         placeholder="URL"
+                        v-model="bottomURL"
                       />
                     </div>
                   </div>
@@ -237,7 +243,11 @@
               <option>4с</option>
               <option>5с</option>
             </select>
-            <button type="button" class="btn bg-gradient-success">
+            <button
+              type="button"
+              class="btn bg-gradient-success"
+              @click="saveBotImage"
+            >
               Добавить
             </button>
           </div>
@@ -248,17 +258,71 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   data: () => ({
     images: [],
     images2: [],
+    imageURL: "",
+    imageText: "",
+    bottomURL: "",
+    imageData: null,
+    picture: null,
+    uploadValue: 0,
   }),
   methods: {
     addImage() {
       this.images.push("");
+      this.picture = null;
     },
     addImage2() {
       this.images2.push("");
+    },
+    async saveImage() {
+      const formImage = {
+        url: this.imageURL,
+        text: this.imageText,
+      };
+      await this.$store.dispatch("addImageTop", formImage);
+    },
+    async saveBotImage() {
+      const formImage = {
+        url: this.bottomURL,
+      };
+      await this.$store.dispatch("addImageBottom", formImage);
+    },
+    previewimage(event) {
+      (this.uploadValue = 0),
+        (this.picture = null),
+        (this.imageData = event.target.files[0]);
+    },
+    async onUpload() {
+      this.picture = null;
+      const storageRef = firebase
+        .storage()
+        .ref(`${this.imageData.name}`)
+        .put(this.imageData);
+      storageRef.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.picture = url;
+          });
+        }
+      );
+      const formImage = {
+        url: this.imageURL,
+        text: this.imageText,
+      };
+      await this.$store.dispatch("addImageTop", formImage);
     },
   },
 };
@@ -310,9 +374,20 @@ label {
   display: flex;
   align-items: center;
   margin: 0 auto;
+  justify-content: center;
 }
 .middle {
   display: flex;
   align-items: center;
+}
+.input-group {
+  margin: 10px 0;
+}
+.small-img {
+  width: 150px;
+  height: 200px;
+}
+img {
+  border: none;
 }
 </style>
