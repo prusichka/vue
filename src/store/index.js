@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import newImage from "./newImage";
+import FilmPage from "./filmPage"
 
 export default createStore({
   state: {},
@@ -7,5 +8,6 @@ export default createStore({
   actions: {},
   modules: {
     newImage,
+    FilmPage,
   },
 });

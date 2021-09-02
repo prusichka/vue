@@ -24,13 +24,17 @@
           </div>
         </div>
         <div class="main-content">
-          <div class="new-img">
+          <div class="new-img" v-for="(image, index) in images" :key="index">
             <div class="card card-info">
+              <i
+                class="fas fa-minus-circle exit-btn"
+                @click.prevent="deleteImage(image.text, index)"
+              ></i>
               <form class="form-horizontal">
                 <div class="card-body">
                   <div class="form-group row download">
                     <div class="img-div">
-                      <img :src="picture" class="small-img" />
+                      <img :src="image.src" class="small-img" />
                     </div>
                     <div class="input-group">
                       <div class="custom-file">
@@ -39,7 +43,7 @@
                           class="custom-file-input"
                           id="exampleInputFile"
                           accept="image/*"
-                          @change="previewimage"
+                          @change="previewimage($event, index)"
                         />
                         <label class="custom-file-label" for="exampleInputFile"
                           >Choose file</label
@@ -53,10 +57,10 @@
                     >
                     <div class="col-sm-10">
                       <input
-                        type="url"
+                        type="text"
                         class="form-control"
                         placeholder="URL"
-                        v-model="imageURL"
+                        v-model="image.url"
                       />
                     </div>
                   </div>
@@ -69,7 +73,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Текст"
-                        v-model="imageText"
+                        v-model="image.text"
                       />
                     </div>
                   </div>
@@ -139,22 +143,38 @@
               >
             </div>
           </div>
-          <div class="form-group download">
-            <div class="input-group">
-              <div class="custom-file">
-                <input
-                  type="file"
-                  class="custom-file-input"
-                  id="exampleInputFile"
-                />
-                <label class="custom-file-label" for="exampleInputFile"
-                  >Choose file</label
-                >
+          <div class="card card-primary">
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="main-form">
+              <div class="card-body">
+                <div class="form-group">
+                  <div class="img-div">
+                    <img :src="mainImage.src" class="small-img" />
+                  </div>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        @change="previewMainImage($event, index)"
+                      />
+                      <label class="custom-file-label" for="exampleInputFile"
+                        >Choose file</label
+                      >
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      @click="onUploadMainImage"
+                    >
+                      Добавить
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
-              </div>
-            </div>
+              <!-- /.card-body -->
+            </form>
           </div>
         </div>
         <!-- /.card-header -->
@@ -183,24 +203,24 @@
           </div>
         </div>
         <div class="main-content">
-          <div class="new-img" v-for="image in images2" :key="image">
+          <div class="new-img" v-for="(image, index) in images2" :key="index">
             <div class="card card-info">
               <form class="form-horizontal">
                 <div class="card-body">
                   <div class="form-group row download">
+                    <div class="img-div">
+                      <img :src="image.src" class="small-img" />
+                    </div>
                     <div class="input-group">
                       <div class="custom-file">
                         <input
                           type="file"
                           class="custom-file-input"
-                          id="exampleInputFile"
+                          @change="previewBottomimage($event, index)"
                         />
                         <label class="custom-file-label" for="exampleInputFile"
                           >Choose file</label
                         >
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
                       </div>
                     </div>
                   </div>
@@ -214,7 +234,7 @@
                         class="form-control"
                         id="inputURL3"
                         placeholder="URL"
-                        v-model="bottomURL"
+                        v-model="image.url"
                       />
                     </div>
                   </div>
@@ -223,7 +243,6 @@
                 <!-- /.card-footer -->
               </form>
             </div>
-            {{ image }}
           </div>
           <button
             type="button"
@@ -246,7 +265,7 @@
             <button
               type="button"
               class="btn bg-gradient-success"
-              @click="saveBotImage"
+              @click="onUploadBottomImage"
             >
               Добавить
             </button>
@@ -262,47 +281,85 @@ import firebase from "firebase";
 export default {
   data: () => ({
     images: [],
-    images2: [],
-    imageURL: "",
-    imageText: "",
-    bottomURL: "",
+    mainImage: {
+      file: "",
+      src: "",
+    },
+    images2: [
+      {
+        url: "",
+        src: "",
+        file: "",
+        id: "",
+      },
+    ],
     imageData: null,
+    imageData2: null,
+    imageData3: null,
+    picture2: null,
+    picture3: null,
     picture: null,
     uploadValue: 0,
+    uploadValue2: 0,
+    uploadValue3: 0,
   }),
   methods: {
     addImage() {
-      this.images.push("");
-      this.picture = null;
+      this.images.push({});
     },
     addImage2() {
-      this.images2.push("");
+      this.images2.push({
+        url: "",
+        src: "",
+        file: "",
+        id: "",
+      });
     },
-    async saveImage() {
-      const formImage = {
-        url: this.imageURL,
-        text: this.imageText,
-      };
-      await this.$store.dispatch("addImageTop", formImage);
-    },
-    async saveBotImage() {
-      const formImage = {
-        url: this.bottomURL,
-      };
-      await this.$store.dispatch("addImageBottom", formImage);
-    },
-    previewimage(event) {
+    previewimage(event, index) {
       (this.uploadValue = 0),
         (this.picture = null),
         (this.imageData = event.target.files[0]);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.images[index].file = file;
+        this.images[index].src = reader.result;
+      };
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+    },
+    previewMainImage(event) {
+      (this.uploadValue2 = 0),
+        (this.picture2 = null),
+        (this.imageData2 = event.target.files[0]);
+      const reader2 = new FileReader();
+      reader2.onloadend = () => {
+        this.mainImage.file = mainFile;
+        this.mainImage.src = reader2.result;
+      };
+      const mainFile = event.target.files[0];
+      reader2.readAsDataURL(mainFile);
+    },
+    previewBottomimage(event, index) {
+      (this.uploadValue3 = 0),
+        (this.picture3 = null),
+        (this.imageData3 = event.target.files[0]);
+      const elId = event.target.files[0].lastModified;
+      const reader3 = new FileReader();
+      reader3.onloadend = () => {
+        this.images2[index].file = file;
+        this.images2[index].id = elId;
+        this.images2[index].src = reader3.result;
+      };
+      const file = event.target.files[0];
+      reader3.readAsDataURL(file);
+      console.log(elId);
     },
     async onUpload() {
-      this.picture = null;
       const storageRef = firebase
         .storage()
         .ref(`${this.imageData.name}`)
         .put(this.imageData);
-      storageRef.on(
+      await storageRef.on(
         `state_changed`,
         (snapshot) => {
           this.uploadValue =
@@ -313,22 +370,102 @@ export default {
         },
         () => {
           this.uploadValue = 100;
-          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.picture = url;
-          });
         }
       );
-      const formImage = {
-        url: this.imageURL,
-        text: this.imageText,
-      };
-      await this.$store.dispatch("addImageTop", formImage);
+      await this.$store.dispatch("addImageTop", this.images);
+    },
+    async onUploadMainImage() {
+      const storageRef2 = firebase
+        .storage()
+        .ref(`${this.imageData2.name}`)
+        .put(this.imageData2);
+      storageRef2.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue2 =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue2 = 100;
+        }
+      );
+      await this.$store.dispatch("addMainImage", this.mainImage);
+    },
+    async onUploadBottomImage() {
+      const storageRef3 = firebase
+        .storage()
+        .ref(`${this.imageData3.name}`)
+        .put(this.imageData3);
+      storageRef3.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue3 =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue3 = 100;
+        }
+      );
+      await this.$store.dispatch("addImageBottom", this.images2);
+    },
+    async deleteImage(imageText, index) {
+      this.images.splice(index, 1);
+      if (!this.images.length == 0) {
+        try {
+          firebase
+            .database()
+            .ref("sliders/" + "top/" + imageText)
+            .remove();
+        } catch (error) {
+          console.log(error);
+        }
+      } else return;
     },
   },
+  mounted() {
+    if (this.images.length == 0) {
+      firebase
+        .database()
+        .ref("sliders/top")
+        .on("value", (element) => {
+          element.forEach((imageObj) => {
+            let newImage = {
+              text: imageObj.val().text,
+              url: imageObj.val().url,
+              src: imageObj.val().src,
+            };
+            imageObj != newImage
+              ? this.images.push(newImage)
+              : this.images.pop();
+            console.log(this.images);
+          });
+        });
+    }
+  },
+  // mounted() {
+  //   const ref = firebase.database().ref("sliders/top");
+  //   ref.on("value", (snapshot) => {
+  //     snapshot.forEach((element) => {
+  //       var resultingData = element.val();
+  //       console.log(resultingData);
+  //       this.images.push(resultingData);
+  //     });
+  //   });
+  // },
+  computed: {},
 };
 </script>
 
 <style scoped>
+img.preview {
+  width: 300px;
+}
 .wrapper {
   padding: 5px;
 }
@@ -387,7 +524,19 @@ label {
   width: 150px;
   height: 200px;
 }
-img {
-  border: none;
+.img-div {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+.exit-btn {
+  color: #ccc;
+  display: block;
+  font-size: 30px;
+  margin: 5px;
+}
+.exit-btn:hover {
+  color: red;
+  cursor: pointer;
 }
 </style>
